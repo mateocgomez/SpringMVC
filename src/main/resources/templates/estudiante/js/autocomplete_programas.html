@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+	<script type="text/javascript" th:fragment="javascript">
+		$(document).ready(function() {
+			
+			$("#buscar_programa").autocomplete({
+				
+				source: function(request, response){
+					$.ajax({
+						url: "/estudiante/cargar-descuento/" + request.term,
+						dataType: "json",
+						data: {
+							term: request.term,	
+						},
+						success: function(data){
+							response($.map(data, function(item){
+								return {
+									value: item.id,
+									label: item.nombre,
+									precio: item.precio,
+									
+								};
+							}));
+						},
+					});
+				},
+				select: function(event, ui){
+					//$("#buscar_programa").val(ui.item.label);
+					
+					var linea = $("#plantillaItemsEstudiante").html();
+					
+					linea= linea.replace(/{ID}/g, ui.item.value);
+					linea= linea.replace(/{NOMBRE}/g, ui.item.label);
+					linea= linea.replace(/{PRECIO}/g, ui.item.precio);
+					
+					
+					$("#cargarItemEstudiantes tbody").append(linea);
+					
+					return false;
+				}
+			});
+		}
+
+		);
+	</script>
+
+
+
+</body>
+</html>

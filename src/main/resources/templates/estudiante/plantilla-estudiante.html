@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+	<table th:fragment="itemsEstudiante" class="d-none">
+
+
+		<tbody id="plantillaItemsEstudiante">
+			<tr id="row_{ID}">
+				<td class="d-none"><input type="hidden" value="{ID}"
+					name="item_id[]" /></td>
+				<td>{PROGRAMA}</td>
+				<td><input type="number" value="22" name="creditos[]" id="creditos_{ID}" class="form-control col-sm-4"/></td>
+				<td>{PRECIO}</td>
+			</tr>
+
+
+
+		</tbody>
+
+	</table>
+
+</body>
+</html>

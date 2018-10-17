@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layaout/layaout :: head">
+</head>
+<body>
+
+	<header th:replace="layaout/layaout :: header"></header>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+			
+			<h4 class="card-title" >
+			<a class="btn btn-primary btn-xs"
+								th:href="@{'/estudiante/form/' + ${monitoria.id}}"
+								th:text="'Inscribirme'"></a>
+			</h4>
+			
+				<ul class="list-group">
+					<li class="list-group-item active" th:text="${monitoria.nombre}"></li>
+					<li class="list-group-item " th:text="${monitoria.salon}"></li>
+					<li class="list-group-item " th:text="${monitoria.horario}"></li>
+					<li class="list-group-item " th:text="${monitoria.createAt}"></li>
+				</ul>
+
+				<div th:if="${#lists.isEmpty(monitoria.estudiantes)}"
+					class="alert alert-info my-4"
+					th:text="'No existen estudiantes asignados a esta monitoria' + ' ' + ${monitoria.nombre}"></div>
+
+				<table th:if="${not #lists.isEmpty(monitoria.estudiantes)}"
+					class="table table-bordered table-striped my-4">
+					<thead class="thead-inverse">
+						<tr>
+							<th>nombre</th>
+							<th>apellido</th>
+							<th>promedio</th>
+							<th>materia</th>
+							<th>creditos</th>
+							<th>programa</th>
+							<th>total</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="estudiante: ${monitoria.estudiantes}">
+							<td th:text="${estudiante.nombre}"></td>
+							<td th:text="${estudiante.apellido"></td>
+							<td th:text="${estudiante.promedio}"></td>
+							<td th:text="${estudiante.materia}"></td>
+							<td th:text="${estudiante.creditos}"></td>
+							<td th:text="${estudiante.programa}"></td>
+							<td th:text="${estudiante.total}"></td>
+
+						</tr>
+					</tbody>
+
+				</table>
+
+			</div>
+		</div>
+	</div>
+
+
+	<footer th:replace="layaout/layaout :: footer"></footer>
+</body>
+</html>

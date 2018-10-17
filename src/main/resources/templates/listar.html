@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layaout/layaout :: head">
+</head>
+<body>
+
+	<header th:replace="layaout/layaout :: header"></header>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<h4 class="card-title">
+					<a class="btn btn-primary btn-xs" th:href="@{/form}">Crear
+						curso</a>
+				</h4>
+				<h1 class="text-secondary"></h1>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Curso</th>
+							<th>Salon</th>
+							<th>Horario</th>
+							<th>Fecha de inicio</th>
+							<th>Inscribirme</th>
+							<th>Editar</th>
+							<th>Eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="table-primary" th:each="monitoria: ${monitorias}">
+							<td><a class="btn btn-primary btn-xs"
+								th:href="@{/ver/} + ${monitoria.id}" th:text="${monitoria.id}"></a></td>
+							<td th:text="${monitoria.nombre}"></td>
+							<td th:text="${monitoria.salon}"></td>
+							<td th:text="${monitoria.horario}"></td>
+							<td th:text="${monitoria.createAt}"></td>
+							<td><a class="btn btn-success btn-xs"
+								th:href="@{'/estudiante/form/' + ${monitoria.id}}"
+								th:text="'Inscribirme'"></a></td>
+							<td><a class="btn btn-primary btn-xs"
+								th:href="@{/form/} + ${monitoria.id}" th:text="'editar'"></a></td>
+							<td><a class="btn btn-danger btn-xs"
+								th:href="@{/eliminar/} + ${monitoria.id}" th:text="'eliminar'"
+								onclick="return confirm('Quieres eliminar este curso?');"></a></td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<footer th:replace="layaout/layaout :: footer"></footer>
+</body>
+</html>
