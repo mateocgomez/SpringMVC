@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name = "estudiantes")
 public class Estudiante implements Serializable {
@@ -27,18 +29,12 @@ public class Estudiante implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
+	@NotEmpty
 	private String nombre;
-
+	
+	@NotEmpty
 	private String apellido;
-
-	private Integer promedio;
-
-	private String materia;
-
-	private Integer creditos;
-
-	private String programa;
 
 	@OneToOne(fetch = FetchType.LAZY)
 	private Monitoria monitoria;
@@ -59,6 +55,9 @@ public class Estudiante implements Serializable {
 		this.id = id;
 	}
 
+		
+	
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -73,38 +72,6 @@ public class Estudiante implements Serializable {
 
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
-	}
-
-	public Integer getPromedio() {
-		return promedio;
-	}
-
-	public void setPromedio(Integer promedio) {
-		this.promedio = promedio;
-	}
-
-	public String getMateria() {
-		return materia;
-	}
-
-	public void setMateria(String materia) {
-		this.materia = materia;
-	}
-
-	public Integer getCreditos() {
-		return creditos;
-	}
-
-	public void setCreditos(Integer creditos) {
-		this.creditos = creditos;
-	}
-
-	public String getPrograma() {
-		return programa;
-	}
-
-	public void setPrograma(String programa) {
-		this.programa = programa;
 	}
 
 	public Monitoria getMonitoria() {
@@ -127,13 +94,5 @@ public class Estudiante implements Serializable {
 		this.monitoria = monitoria;
 	}
 	
-	public Double getDescuento() {
-		Double total = 0.0;
-		int size = items.size();
-		
-		total += items.get(size).calcularMatricula();
-		
-		return total;
-		
-	}
+	
 }

@@ -32,24 +32,17 @@
 					class="table table-bordered table-striped my-4">
 					<thead class="thead-inverse">
 						<tr>
-							<th>nombre</th>
-							<th>apellido</th>
-							<th>promedio</th>
-							<th>materia</th>
-							<th>creditos</th>
-							<th>programa</th>
-							<th>total</th>
+							<th>Nombre</th>
+							<th>Apellido</th>
+							
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="estudiante: ${monitoria.estudiantes}">
 							<td th:text="${estudiante.nombre}"></td>
-							<td th:text="${estudiante.apellido"></td>
-							<td th:text="${estudiante.promedio}"></td>
-							<td th:text="${estudiante.materia}"></td>
-							<td th:text="${estudiante.creditos}"></td>
-							<td th:text="${estudiante.programa}"></td>
-							<td th:text="${estudiante.total}"></td>
+							<td th:text="${estudiante.apellido}"></td>
+							
+							
 
 						</tr>
 					</tbody>

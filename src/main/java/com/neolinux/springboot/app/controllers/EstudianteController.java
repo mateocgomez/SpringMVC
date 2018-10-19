@@ -7,9 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.neolinux.springboot.app.model.entity.Programas;
@@ -50,6 +53,24 @@ public class EstudianteController {
 	@GetMapping(value = "/cargar-descuento/{term}", produces = { "application/json" })
 	public @ResponseBody List<Programas> cargarPrograma(@PathVariable String term) {
 		return monitoriaService.findByNombre(term);
+	}
+	
+
+	
+	@PostMapping("/form")
+	public String guardar(Estudiante estudiante,
+			@RequestParam(name="item_id", required=false) Long itemId,
+			RedirectAttributes flash,
+			SessionStatus status
+			) {
+		
+		//adicionarle el for para que pueda encontrar cada campo
+		
+		monitoriaService.saveEstudiante(estudiante);
+		status.setComplete();
+		
+		flash.addFlashAttribute("success", "Hemos validado sus datos se ha inscrito satisfactoriamente");
+		return "redirect:/ver/" + estudiante.getMonitoria();
 	}
 
 }

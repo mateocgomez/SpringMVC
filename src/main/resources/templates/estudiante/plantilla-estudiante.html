@@ -9,10 +9,18 @@
 		<tbody id="plantillaItemsEstudiante">
 			<tr id="row_{ID}">
 				<td class="d-none"><input type="hidden" value="{ID}"
-					name="item_id[]" /></td>
+					name="item_id" /></td>
+				<td>{CODIGO}</td>
+				<td>{NOMBRE}</td>
+				<td>{APELLIDO}</td>
+				<td>{PROMEDIO}</td>
+				<td>{MATERIA}</td>
+				<td>{CREDITOS}</td>
 				<td>{PROGRAMA}</td>
-				<td><input type="number" value="22" name="creditos[]" id="creditos_{ID}" class="form-control col-sm-4"/></td>
 				<td>{PRECIO}</td>
+				<td> <button type="button" name="cantidad" value="4500000" id="cantidad_{ID}" class="btn btn-primary" onclick="itemsHelper.calcularImporte({ID}, {PRECIO}, this.value);" >Calcular matricula</button>  </td>
+				<td><span id="total_importe_{ID}"  >0</span></td>
+				
 			</tr>
 
 

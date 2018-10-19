@@ -10,7 +10,7 @@ import com.neolinux.springboot.app.model.entity.Programas;
 
 public interface IProgramaDao extends CrudRepository<Programas, Long> {
 	
-	@Query("select p from Programas p where p.nombre like %?1%")
+	@Query("select p from Programas p where p.codigo like %?1%")
 	public List<Programas> findByNombre(String term);
 
 }

@@ -19,9 +19,11 @@ public class ItemMatricula implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private Integer creditos;
+	private String nombre;
 	
-	private Integer valor;
+	private String apellido;
+	
+
 	
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="programa_id")
@@ -33,35 +35,50 @@ public class ItemMatricula implements Serializable {
 
 
 
+	public Programas getPrograma() {
+		return programa;
+	}
+
+
+
+	public void setPrograma(Programas programa) {
+		this.programa = programa;
+	}
+
+
+
 	public void setId(Long id) {
 		this.id = id;
 	}
 
 
 
-	public Integer getValor() {
-		return valor;
+
+	public String getNombre() {
+		return nombre;
 	}
 
 
 
-	public void setValor(Integer valor) {
-		this.valor = valor;
-	}
-
-	public Double calcularMatricula() {
-		return valor.doubleValue()- programa.getPrecio();
-	}
-
-	public Integer getCreditos() {
-		return creditos;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 
 
-	public void setCreditos(Integer creditos) {
-		this.creditos = creditos;
+
+	public String getApellido() {
+		return apellido;
 	}
+
+
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+
+
 
 	private static final long serialVersionUID = 1L;
 
