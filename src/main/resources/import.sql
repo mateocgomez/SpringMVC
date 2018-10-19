@@ -1,1 +1,1 @@
-INSERT INTO programas (codigo, nombre, apellido, promedio, materia, creditos, programa, precio) VALUES('624992', 'mateo', 'castaño', '71', 'JavaScript', '22', 'pregrado', '500000');
+INSERT INTO programas (codigo, nombre, apellido, promedio, materia, creditos, programa, precio) VALUES('624992', 'Mateo', 'Castaño', '71', 'JavaScript', '22', 'pregrado', '500000');

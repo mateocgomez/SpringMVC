@@ -15,8 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 @Entity
 @Table(name = "estudiantes")
 public class Estudiante implements Serializable {
@@ -29,12 +27,13 @@ public class Estudiante implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@NotEmpty
+
 	private String nombre;
-	
-	@NotEmpty
+
 	private String apellido;
+
+	
+	
 
 	@OneToOne(fetch = FetchType.LAZY)
 	private Monitoria monitoria;
@@ -54,9 +53,6 @@ public class Estudiante implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-		
-	
 
 	public String getNombre() {
 		return nombre;

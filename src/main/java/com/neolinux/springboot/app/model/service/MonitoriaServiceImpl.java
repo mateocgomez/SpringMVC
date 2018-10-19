@@ -6,11 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.neolinux.springboot.app.model.dao.IEstudianteDao;
 import com.neolinux.springboot.app.model.dao.IMonitoriaDao;
 import com.neolinux.springboot.app.model.dao.IProgramaDao;
 import com.neolinux.springboot.app.model.entity.Programas;
-import com.neolinux.springboot.app.model.entity.Estudiante;
 import com.neolinux.springboot.app.model.entity.Monitoria;
 
 @Service
@@ -21,11 +19,6 @@ public class MonitoriaServiceImpl implements IMonitoriaService {
 	
 	@Autowired
 	private IProgramaDao programaDao;
-	
-	@Autowired
-	private IEstudianteDao estudianteDao;
-	
-
 	
 	@Override
 	@Transactional(readOnly=true)
@@ -61,24 +54,5 @@ public class MonitoriaServiceImpl implements IMonitoriaService {
 		// TODO Auto-generated method stub
 		return programaDao.findByNombre(term);
 	}
-
-
-
-	@Override
-	@Transactional
-	public Programas findProgramaById(Long id) {
-		// TODO Auto-generated method stub
-		return programaDao.findOne(id);
-	}
-
-	@Override
-	@Transactional
-	public void saveEstudiante(Estudiante estudiante) {
-		// TODO Auto-generated method stub
-		estudianteDao.save(estudiante);
-		
-	}
-
-
 
 }

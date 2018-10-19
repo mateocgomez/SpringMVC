@@ -4,72 +4,70 @@
 
 	<script type="text/javascript" th:fragment="javascript">
 		$(document).ready(function() {
-			
+
 			$("#buscar_programa").autocomplete({
-				
-				source: function(request, response){
+
+				source : function(request, response) {
 					$.ajax({
-						url: "/estudiante/cargar-descuento/" + request.term,
-						dataType: "json",
-						data: {
-							term: request.term,	
+						url : "/estudiante/cargar-descuento/" + request.term,
+						dataType : "json",
+						data : {
+							term : request.term,
 						},
-						success: function(data){
-							response($.map(data, function(item){
+						success : function(data) {
+							response($.map(data, function(item) {
 								return {
-									value: item.id,
-									label: item.codigo,
-									nombre: item.nombre,
-									apellido: item.apellido,
-									promedio: item.promedio,
-									materia: item.materia,
-									creditos: item.creditos,
-									programa: item.programa,
-									precio: item.precio,
-									
-									
+									value : item.id,
+									label : item.codigo,
+									nombre : item.nombre,
+									apellido : item.apellido,
+									promedio : item.promedio,
+									materia : item.materia,
+									creditos : item.creditos,
+									programa : item.programa,
+									precio : item.precio,
+
 								};
 							}));
 						},
 					});
 				},
-				select: function(event, ui){
+				select : function(event, ui) {
 					//$("#buscar_programa").val(ui.item.label);
-					
+
 					var linea = $("#plantillaItemsEstudiante").html();
-					
-					linea= linea.replace(/{ID}/g, ui.item.value);
-					linea= linea.replace(/{CODIGO}/g, ui.item.label);
-					linea= linea.replace(/{NOMBRE}/g, ui.item.nombre);
-					linea= linea.replace(/{APELLIDO}/g, ui.item.apellido);
-					linea= linea.replace(/{PROMEDIO}/g, ui.item.promedio);
-					linea= linea.replace(/{MATERIA}/g, ui.item.materia);
-					linea= linea.replace(/{CREDITOS}/g, ui.item.creditos);
-					linea= linea.replace(/{PROGRAMA}/g, ui.item.programa);
-					linea= linea.replace(/{PRECIO}/g, ui.item.precio);
-					
-					
-					
+
+					linea = linea.replace(/{ID}/g, ui.item.value);
+					linea = linea.replace(/{NOMBRE}/g, ui.item.label);
+					linea = linea.replace(/{CODIGO}/g, ui.item.label);
+					linea = linea.replace(/{NOMBRE}/g, ui.item.nombre);
+					linea = linea.replace(/{APELLIDO}/g, ui.item.apellido);
+					linea = linea.replace(/{PROMEDIO}/g, ui.item.promedio);
+					linea = linea.replace(/{MATERIA}/g, ui.item.materia);
+					linea = linea.replace(/{CREDITOS}/g, ui.item.creditos);
+					linea = linea.replace(/{PROGRAMA}/g, ui.item.programa);
+					linea = linea.replace(/{PRECIO}/g, ui.item.precio);
+
 					$("#cargarItemEstudiantes tbody").append(linea);
-					
+
 					return false;
 				}
 			});
-			
-			$("form").submit(function(){
+			$("form").submit(function() {
 				$("#plantillaItemsEstudiante").remove();
 				return;
 			});
 		}
 
 		);
-		
+
 		var cantidad = "400000";
-		
+
 		var itemsHelper = {
-				calcularImporte: function(id, precio, cantidad){
-					$("#total_importe_" + id).html(parseInt(cantidad) - parseInt(precio))
-				}
+			calcularImporte : function(id, precio, cantidad) {
+				$("#total_importe_" + id).html(
+						parseInt(cantidad) - parseInt(precio))
+			}
 		}
 	</script>
 

@@ -23,8 +23,6 @@ public class ItemMatricula implements Serializable {
 	
 	private String apellido;
 	
-
-	
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="programa_id")
 	private Programas programa;
@@ -35,21 +33,10 @@ public class ItemMatricula implements Serializable {
 
 
 
-	public Programas getPrograma() {
-		return programa;
-	}
-
-
-
-	public void setPrograma(Programas programa) {
-		this.programa = programa;
-	}
-
-
-
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 
 
 
@@ -66,7 +53,6 @@ public class ItemMatricula implements Serializable {
 
 
 
-
 	public String getApellido() {
 		return apellido;
 	}
@@ -76,6 +62,19 @@ public class ItemMatricula implements Serializable {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
+
+
+
+	public Programas getPrograma() {
+		return programa;
+	}
+
+
+
+	public void setPrograma(Programas programa) {
+		this.programa = programa;
+	}
+
 
 
 

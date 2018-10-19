@@ -12,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,26 +21,17 @@ public class Programas implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String codigo;
-
 	private String nombre;
-	
+
 	private String apellido;
-
 	private Integer promedio;
-
 	private String materia;
-
 	private Integer creditos;
-
 	private String programa;
-
 	private Double precio;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	private Monitoria monitoria;
-
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "programa_id")
 	private List<ItemMatricula> items;
@@ -50,139 +40,77 @@ public class Programas implements Serializable {
 		this.items = new ArrayList<ItemMatricula>();
 	}
 
-	
-	
-	public Monitoria getMonitoria() {
-		return monitoria;
-	}
-
-
-
-	public void setMonitoria(Monitoria monitoria) {
-		this.monitoria = monitoria;
-	}
-
-
-
-	public List<ItemMatricula> getItems() {
-		return items;
-	}
-
-
-
-	public void setItems(List<ItemMatricula> items) {
-		this.items = items;
-	}
-
-
-
-	public Long getId() {
-		return id;
-	}
-
-
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-
-
-	public String getNombre() {
-		return nombre;
-	}
-
-
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-
-
-	public Double getPrecio() {
-		return precio;
-	}
-
-
-
-	public void setPrecio(Double precio) {
-		this.precio = precio;
-	}
-
-
-
-	public String getApellido() {
-		return apellido;
-	}
-
-
-
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
-
-
-
-	public Integer getPromedio() {
-		return promedio;
-	}
-
-
-
-	public void setPromedio(Integer promedio) {
-		this.promedio = promedio;
-	}
-
-
-
-	public String getMateria() {
-		return materia;
-	}
-
-
-
-	public void setMateria(String materia) {
-		this.materia = materia;
-	}
-
-
-
-	public Integer getCreditos() {
-		return creditos;
-	}
-
-
-
-	public void setCreditos(Integer creditos) {
-		this.creditos = creditos;
-	}
-
-
-
-	public String getPrograma() {
-		return programa;
-	}
-
-
-
-	public void setPrograma(String programa) {
-		this.programa = programa;
-	}
-
-
-
 	public String getCodigo() {
 		return codigo;
 	}
-
-
 
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
+	public String getApellido() {
+		return apellido;
+	}
 
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public Integer getPromedio() {
+		return promedio;
+	}
+
+	public void setPromedio(Integer promedio) {
+		this.promedio = promedio;
+	}
+
+	public String getMateria() {
+		return materia;
+	}
+
+	public void setMateria(String materia) {
+		this.materia = materia;
+	}
+
+	public Integer getCreditos() {
+		return creditos;
+	}
+
+	public void setCreditos(Integer creditos) {
+		this.creditos = creditos;
+	}
+
+	public String getPrograma() {
+		return programa;
+	}
+
+	public void setPrograma(String programa) {
+		this.programa = programa;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(Double precio) {
+		this.precio = precio;
+	}
 
 	private static final long serialVersionUID = 1L;
 
