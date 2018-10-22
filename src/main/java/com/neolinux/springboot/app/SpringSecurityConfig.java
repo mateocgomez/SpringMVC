@@ -5,12 +5,17 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.User.UserBuilder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import com.neolinux.springboot.app.model.service.JpaUserDetailsService;
 
 @Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private JpaUserDetailsService userDetailsService;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -33,11 +38,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void ConfigurerGlobal(AuthenticationManagerBuilder build) throws Exception{
-		UserBuilder users = User.withDefaultPasswordEncoder();
 		
-		build.inMemoryAuthentication()
-		.withUser(users.username("admin").password("admin").roles("ADMIN", "USER"))
-		.withUser(users.username("624992").password("mateo").roles("USER"));
+		build.userDetailsService(userDetailsService)
+		.passwordEncoder(passwordEncoder);
+		
+		
+//		UserBuilder users = User.withDefaultPasswordEncoder();
+//		build.inMemoryAuthentication().withUser(users.username("admin").password("admin").roles("ADMIN", "USER"))
+//				.withUser(users.username("624992").password("mateo").roles("USER"));
 	}
 	
 }
