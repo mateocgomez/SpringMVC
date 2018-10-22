@@ -43,14 +43,14 @@ public class MonitoriaServiceImpl implements IMonitoriaService {
 	@Transactional(readOnly=true)
 	public Monitoria findOne(Long id) {
 		// TODO Auto-generated method stub
-		return monitoriaDao.findOne(id);
+		return monitoriaDao.findById(id).orElse(null);
 	}
 
 	@Override
 	@Transactional
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
-		monitoriaDao.delete(id);
+		monitoriaDao.deleteById(id);
 		
 	}
 
@@ -72,14 +72,14 @@ public class MonitoriaServiceImpl implements IMonitoriaService {
 	@Transactional(readOnly=true)
 	public Programas findProgramaById(Long id) {
 		// TODO Auto-generated method stub
-		return programaDao.findOne(id);
+		return programaDao.findById(id).orElse(null);
 	}
 
 	@Override
 	@Transactional(readOnly=true)
 	public Estudiante findEstudianteById(Long id) {
 		// TODO Auto-generated method stub
-		return estudianteDao.findOne(id);
+		return estudianteDao.findById(id).orElse(null);
 	}
 
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
 <meta charset="ISO-8859-1" />
 <title th:text="'UCC' + ' '  + ${titulo}">Insert title here</title>
@@ -21,12 +22,19 @@
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a class="nav-link" href="#">Home </a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/listar}">Home
+					</a></li>
 					<li class="nav-item"><a class="nav-link" href=""
 						th:href="@{/listar}">Cursos</a></li>
 					<li class="nav-item"><a class="nav-link" href=""
 						th:href="@{/alumnos}">Alumnos</a></li>
 				</ul>
+
+				<ul class="navbar-nav navbar-right">
+					<li sec:authorize="!isAuthenticated()" ><a class="btn btn-outline-primary" th:href="@{/login}">Iniciar
+							sesion</a></li>
+				</ul>
+
 
 			</div>
 		</nav>
@@ -43,6 +51,10 @@
 	</header>
 	<div class="container"></div>
 	<footer th:fragment="footer" class="container">
+		<p>
+			Usuario logueado: <span sec:authentication="name"></span> Role: <span
+				sec:authentication="principal.authorities"></span>
+		</p>
 		<p>Proyecto desarrollado para Arquitectura de Software - 2018 -
 			Mateo Castano Gomez - Maria Angelica Guererro</p>
 		<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>

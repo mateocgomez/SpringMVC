@@ -39,7 +39,7 @@ public class MonitoriaController {
 		return "ver";
 	}
 	
-	@RequestMapping(value="/listar", method=RequestMethod.GET)
+	@RequestMapping(value= {"/listar", "/"}, method=RequestMethod.GET)
 	public String listar(Model model) {
 		model.addAttribute("titulo", "Listado de cursos disponibles");
 		model.addAttribute("monitorias", monitoriaService.findAll());
