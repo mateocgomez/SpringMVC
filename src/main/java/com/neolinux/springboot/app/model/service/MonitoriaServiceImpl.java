@@ -69,10 +69,17 @@ public class MonitoriaServiceImpl implements IMonitoriaService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(readOnly=true)
 	public Programas findProgramaById(Long id) {
 		// TODO Auto-generated method stub
 		return programaDao.findOne(id);
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Estudiante findEstudianteById(Long id) {
+		// TODO Auto-generated method stub
+		return estudianteDao.findOne(id);
 	}
 
 }

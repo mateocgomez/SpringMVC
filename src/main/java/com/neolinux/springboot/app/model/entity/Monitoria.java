@@ -121,4 +121,11 @@ public class Monitoria implements Serializable {
 		estudiantes.add(estudiante);
 	}
 
+	@Override
+	public String toString() {
+		return nombre;
+	}
+	
+	
+
 }

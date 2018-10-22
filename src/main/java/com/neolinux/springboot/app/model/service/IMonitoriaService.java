@@ -25,4 +25,7 @@ public interface IMonitoriaService {
 	//obtener el programa por el id
 	
 	public Programas findProgramaById(Long id);
+	
+	
+	public Estudiante findEstudianteById(Long id);
 }
