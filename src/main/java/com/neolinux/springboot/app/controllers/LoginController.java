@@ -14,6 +14,7 @@ public class LoginController {
 	
 	@GetMapping("/login")
 	public String login(@RequestParam(value="error", required=false) String error,
+			@RequestParam(value="logout", required=false) String logout,
 			Model model, Principal principal, RedirectAttributes flash) {
 		
 		if (principal != null) {
@@ -21,11 +22,17 @@ public class LoginController {
 			return "redirect:/";
 		}
 		
+
+		
 		if (error != null) {
 			model.addAttribute("error", "Codigo o contraseña incorrecta, por favor vuelva a internarlo!");
 		}
 		
-		return "/";
+		if(logout != null) {
+			model.addAttribute("success", "Vuelve pronto :)");
+		}
+		
+		return "login";
 	}
 	
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layaout/layaout :: head">
 </head>
 <body>
@@ -11,37 +11,37 @@
 			<div class="card-header" th:text="${titulo}"></div>
 			<div class="card-body">
 				<h4 class="card-title">
-					<a class="btn btn-primary btn-xs" th:href="@{/form}">Crear
+					<a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-primary btn-xs" th:href="@{/form}">Crear
 						curso</a>
 				</h4>
 				<h1 class="text-secondary"></h1>
 				<table class="table">
 					<thead>
 						<tr>
-							<th>Id</th>
+							<th sec:authorize="hasRole('ROLE_USER')" >Id</th>
 							<th>Curso</th>
 							<th>Salon</th>
 							<th>Horario</th>
 							<th>Fecha de inicio</th>
-							<th>Inscribirme</th>
-							<th>Editar</th>
-							<th>Eliminar</th>
+							<th sec:authorize="hasRole('ROLE_USER')" >Inscribirme</th>
+							<th sec:authorize="hasRole('ROLE_ADMIN')" >Editar</th>
+							<th sec:authorize="hasRole('ROLE_ADMIN')" >Eliminar</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr class="table-primary" th:each="monitoria: ${monitorias}">
-							<td><a class="btn btn-primary btn-xs"
+							<td sec:authorize="hasRole('ROLE_USER')"><a class="btn btn-primary btn-xs"
 								th:href="@{/ver/} + ${monitoria.id}" th:text="${monitoria.id}"></a></td>
 							<td th:text="${monitoria.nombre}"></td>
 							<td th:text="${monitoria.salon}"></td>
 							<td th:text="${monitoria.horario}"></td>
 							<td th:text="${monitoria.createAt}"></td>
-							<td><a class="btn btn-success btn-xs"
+							<td sec:authorize="hasRole('ROLE_USER')" ><a class="btn btn-success btn-xs"
 								th:href="@{'/estudiante/form/' + ${monitoria.id}}"
 								th:text="'Inscribirme'"></a></td>
-							<td><a class="btn btn-primary btn-xs"
+							<td sec:authorize="hasRole('ROLE_ADMIN')" ><a class="btn btn-primary btn-xs"
 								th:href="@{/form/} + ${monitoria.id}" th:text="'editar'"></a></td>
-							<td><a class="btn btn-danger btn-xs"
+							<td sec:authorize="hasRole('ROLE_ADMIN')" ><a class="btn btn-danger btn-xs"
 								th:href="@{/eliminar/} + ${monitoria.id}" th:text="'eliminar'"
 								onclick="return confirm('Quieres eliminar este curso?');"></a></td>
 						</tr>

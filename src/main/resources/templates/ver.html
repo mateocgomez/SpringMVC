@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layaout/layaout :: head">
 </head>
 <body>
@@ -12,7 +12,7 @@
 			<div class="card-body">
 			
 			<h4 class="card-title" >
-			<a class="btn btn-primary btn-xs"
+			<a sec:authorize="hasRole('ROLE_USER')" class="btn btn-primary btn-xs"
 								th:href="@{'/estudiante/form/' + ${monitoria.id}}"
 								th:text="'Inscribirme'"></a>
 			</h4>
